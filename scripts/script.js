@@ -12,7 +12,7 @@ $(document).ready(function () {
 
 		//Blur Event
 	$(searchField).on('blur', function () {
-		if (searchField.val() == '') {
+		if (searchField.val() === '') {
 			$(fieldWidth).animate({
 				width: '70%'
 			}, 400);
@@ -42,23 +42,23 @@ $(document).ready(function () {
 				q: q,
 				pageToken: token,
 				type: 'video',
-				key: 'AIzaSyC7Wo6OD7Foke9g7I_pQ-3SItY_6JhhQM8'},
-				function (data) {
-					var nextPageToken = data.nextPageToken,
-						prevPageToken = data.prevPageToken;
-					console.log(data);
-					$.each(data.items, function (i, item) {
-						var output = getOutput(item);
+				key: 'AIzaSyCY5OhYPzF4LJ58aWeM_PEr-iB3PswIZuM'
+			}).done(function(data) {
+				var nextPageToken = data.nextPageToken,
+					prevPageToken = data.prevPageToken;
+				$.each(data.items, function (i, item) {
+					var output = getOutput(item);
 
-						//Display result
-						$('#results').append(output);
-					});
-					var buttons = getButtons(prevPageToken, nextPageToken);
-
-					//Display buttons
-					$('#buttons').append(buttons);
-				}
-			);
+					//Display result
+					$('#results').append(output);
+				});
+				var buttons = getButtons(prevPageToken, nextPageToken);
+				//Display buttons
+				$('#buttons').append(buttons);
+			})
+			.fail(function(response) {
+				console.log(response);
+			});
 	}
 		// Get Output
 		function getOutput (item) {

@@ -13,7 +13,7 @@ a{
 .container{
 	width: 740px;
 	background-color: #fff;
-	margin: auto;
+	margin: 40px auto;
 	padding: 15px;
 }
 .clearfix::after {
